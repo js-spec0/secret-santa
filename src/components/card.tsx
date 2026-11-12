@@ -31,7 +31,7 @@ export function PageShell({ children, wide = false }: { children: ReactNode; wid
           <div className="p-6 sm:p-8">{children}</div>
         </div>
         <p className="mt-6 text-center text-sm text-green-100/80">
-          🐻 Coding Bear · Veselé Vánoce 🎄
+          🎄 Veselé Vánoce 🎄
         </p>
       </div>
     </main>

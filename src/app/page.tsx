@@ -12,7 +12,7 @@ export default function Home() {
         <div className="mt-2">
           <Title>Secret Santa</Title>
         </div>
-        <p className="mt-1 text-sm font-medium tracking-wide text-green-800">Coding Bear 🎄</p>
+        <p className="mt-1 text-sm font-medium tracking-wide text-green-800">pro Medvědy</p>
       </div>
       <Suspense fallback={<p className="text-center text-sm text-gray-500">Načítám…</p>}>
         <Registration />

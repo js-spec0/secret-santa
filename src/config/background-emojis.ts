@@ -7,26 +7,26 @@
  */
 export const backgroundEmojis = {
   /** Ze kterých emoji se náhodně vybírá. */
-  emojis: ["🎄", "🎁", "⭐", "🔔", "🦌", "🍪", "🧦", "❄️", "☃️", "🎅", "🕯️", "🍬", "🐻"],
+  emojis: ["🎄", "🎁", "⭐", "🦌", "❄️", "☃️", "🎅", "🐻"],
 
   /** Jak dlouho je emoji plně vidět (mezi fade in a fade out). */
-  visibleMs: 4000,
+  visibleMs: 3400,
 
   /** Délka postupného objevení. */
-  fadeInMs: 800,
+  fadeInMs: 700,
 
   /** Délka postupného zmizení. */
-  fadeOutMs: 800,
+  fadeOutMs: 700,
 
   /** Četnost: jak často se objeví nové emoji (menší číslo = víc emoji). */
   spawnEveryMs: 700,
 
   /** Maximální počet emoji najednou na obrazovce. */
-  maxOnScreen: 14,
+  maxOnScreen: 18,
 
   /** Velikost emoji v pixelech (náhodně mezi min a max). */
   minSizePx: 28,
-  maxSizePx: 56,
+  maxSizePx: 92,
 
   /** Neprůhlednost plně viditelného emoji (0–1). */
   opacity: 0.85,

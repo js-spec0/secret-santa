@@ -2,7 +2,8 @@
 
 import { randomBytes } from "node:crypto";
 import { refresh } from "next/cache";
-import { db, EMAIL_DOMAIN, getSettings } from "@/lib/db";
+import { db, getSettings } from "@/lib/db";
+import { EMAIL_DOMAIN, isCompanyEmail, normalizeEmail } from "@/lib/email";
 
 export type RegisterState =
   | { status: "idle" }
@@ -11,12 +12,12 @@ export type RegisterState =
 
 export async function register(_prev: RegisterState, formData: FormData): Promise<RegisterState> {
   const name = String(formData.get("name") ?? "").trim().replace(/\s+/g, " ");
-  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const email = normalizeEmail(String(formData.get("email") ?? ""));
 
   if (!name || name.length > 100) {
     return { status: "error", message: "Vyplň prosím své jméno.", name, email };
   }
-  if (!/^[^@\s]+@codingbear\.com$/.test(email)) {
+  if (!isCompanyEmail(email)) {
     return {
       status: "error",
       message: `Přihlásit se lze jen firemním emailem končícím na ${EMAIL_DOMAIN}.`,

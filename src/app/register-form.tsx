@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { register, type RegisterState } from "./actions";
 import { Notice } from "@/components/card";
+import { EMAIL_DOMAIN, isCompanyEmail } from "@/lib/email";
 
 const initial: RegisterState = { status: "idle" };
 
@@ -42,8 +43,15 @@ export function RegisterForm() {
           required
           autoComplete="email"
           defaultValue={values?.email}
-          pattern="[^@\s]+@[cC][oO][dD][iI][nN][gG][bB][eE][aA][rR]\.[cC][oO][mM]"
-          title="Použij email končící na @codingbear.com"
+          onChange={(e) => {
+            // Vlastní hláška prohlížeče místo atributu pattern; prázdné pole řeší `required`.
+            const value = e.currentTarget.value;
+            e.currentTarget.setCustomValidity(
+              value === "" || isCompanyEmail(value)
+                ? ""
+                : `Použij firemní email končící na ${EMAIL_DOMAIN}`,
+            );
+          }}
           className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100"
           placeholder="jmeno@codingbear.com"
         />
@@ -56,7 +64,7 @@ export function RegisterForm() {
         disabled={pending}
         className="w-full rounded-lg bg-red-700 px-4 py-2.5 font-semibold text-white hover:bg-red-800 disabled:opacity-60"
       >
-        {pending ? "Přihlašuji…" : "Přihlásit se do Secret Santy"}
+        {pending ? "Přihlašuji…" : "Přihlásit se do medvědího Secret Santy"}
       </button>
     </form>
   );

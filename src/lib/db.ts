@@ -1,8 +1,6 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-export const EMAIL_DOMAIN = "@codingbear.com";
-
 export type Participant = {
   id: string;
   name: string;

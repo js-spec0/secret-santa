@@ -6,7 +6,7 @@ import { RegisterForm } from "./register-form";
 
 export default function Home() {
   return (
-    <PageShell>
+    <PageShell emojis>
       <div className="mb-6 text-center">
         <BearLogo />
         <div className="mt-2">

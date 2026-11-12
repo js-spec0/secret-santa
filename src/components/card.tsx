@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { BackgroundEmojis } from "./background-emojis";
 
 const BULBS = ["#ef4444", "#facc15", "#22c55e", "#3b82f6", "#f97316", "#ec4899"];
 
@@ -21,10 +22,23 @@ function Lights() {
   );
 }
 
-export function PageShell({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
+export function PageShell({
+  children,
+  wide = false,
+  emojis = false,
+}: {
+  children: ReactNode;
+  wide?: boolean;
+  /** Zobrazit v pozadí vánoční emoji (nastavení v src/config/background-emojis.ts). */
+  emojis?: boolean;
+}) {
   return (
-    <main className="flex flex-1 flex-col items-center px-4 py-8 sm:py-14">
-      <div className={`w-full ${wide ? "max-w-3xl" : "max-w-md"}`}>
+    <main className="relative flex flex-1 flex-col items-center px-4 py-8 sm:py-14">
+      {emojis && <BackgroundEmojis />}
+      <div
+        className={`relative z-10 w-full ${wide ? "max-w-3xl" : "max-w-md"}`}
+        data-emoji-avoid // emoji v pozadí se tomuto sloupci (světýlka, karta, patička) vyhýbají
+      >
         <Lights />
         <div className="overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/40 ring-4 ring-yellow-400/70">
           <div className="candy-stripe h-3" />

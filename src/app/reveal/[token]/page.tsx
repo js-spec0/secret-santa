@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function RevealPage({ params }: PageProps<"/reveal/[token]">) {
   return (
-    <PageShell>
+    <PageShell emojis>
       <Suspense fallback={<p className="text-center text-sm text-gray-500">Načítám…</p>}>
         <Reveal params={params} />
       </Suspense>

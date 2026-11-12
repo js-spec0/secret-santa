@@ -7,7 +7,7 @@ export default function Error({ retry }: { error: unknown; retry: () => void }) 
     <PageShell>
       <div className="space-y-4 text-center">
         <div className="text-5xl">🥶</div>
-        <h1 className="text-xl font-bold text-red-800">Něco se pokazilo</h1>
+        <h1 className="font-festive text-3xl text-red-700">Něco se pokazilo</h1>
         <p className="text-sm text-gray-600">
           Nepodařilo se načíst data. Zkus to prosím za chvíli znovu.
         </p>

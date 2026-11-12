@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { PageShell, Notice } from "@/components/card";
+import { BearLogo, PageShell, Notice, Title } from "@/components/card";
+import { GiftReveal } from "@/components/gift-reveal";
 import { findRevealByToken } from "@/lib/db";
 
 export const metadata: Metadata = {
@@ -29,19 +30,12 @@ async function Reveal({ params }: { params: PageProps<"/reveal/[token]">["params
   if (!result.receiverName) {
     return (
       <div className="space-y-4 text-center">
-        <div className="text-5xl">⏳</div>
-        <h1 className="text-xl font-bold text-red-800">Ahoj {result.name}!</h1>
-        <Notice>Losování ještě neproběhlo. Až proběhne, dozvíš se to emailem.</Notice>
+        <BearLogo />
+        <Title>Ahoj {result.name}!</Title>
+        <Notice>Losování ještě neproběhlo. Až proběhne, dozvíš se to emailem. ⏳</Notice>
       </div>
     );
   }
 
-  return (
-    <div className="space-y-4 text-center">
-      <div className="text-5xl">🎁</div>
-      <p className="text-gray-600">Ahoj {result.name}, letos obdarováváš:</p>
-      <p className="text-3xl font-bold text-red-800">{result.receiverName}</p>
-      <p className="text-sm text-gray-500">Psst… nikomu to neprozraď. 🤫</p>
-    </div>
-  );
+  return <GiftReveal name={result.name} receiverName={result.receiverName} />;
 }

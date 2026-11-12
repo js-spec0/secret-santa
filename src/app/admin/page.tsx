@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
+import { connection } from "next/server";
 import { PageShell } from "@/components/card";
 import { requireAdmin } from "@/lib/admin-auth";
 import { getSettings, listParticipantsForAdmin } from "@/lib/db";
@@ -37,7 +38,8 @@ function formatDate(iso: string) {
 }
 
 async function Dashboard() {
-  await requireAdmin(); // čte cookie → request-time, bez platné session redirect na login
+  await connection(); // vše níže (cookie, čas, DB) až při requestu
+  await requireAdmin(); // bez platné session redirect na login
   const [settings, participants] = await Promise.all([getSettings(), listParticipantsForAdmin()]);
 
   const drawn = Boolean(settings.drawn_at);
@@ -46,7 +48,7 @@ async function Dashboard() {
   return (
     <div className="space-y-8">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-red-800">🎅 Secret Santa · Admin</h1>
+        <h1 className="font-festive text-3xl text-red-700">🐻 Secret Santa · Admin</h1>
         <form action={logout}>
           <button className="text-sm text-gray-500 underline hover:text-gray-800">Odhlásit</button>
         </form>

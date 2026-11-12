@@ -6,7 +6,7 @@ export default function NotFound() {
     <PageShell>
       <div className="space-y-3 text-center">
         <div className="text-5xl">🎄</div>
-        <h1 className="text-xl font-bold text-red-800">Tady nic není</h1>
+        <h1 className="font-festive text-3xl text-red-700">Tady nic není</h1>
         <p className="text-sm text-gray-600">
           Odkaz je neplatný. Zkontroluj, že jsi ho z emailu zkopíroval/a celý.
         </p>
